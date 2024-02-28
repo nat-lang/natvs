@@ -1,0 +1,28 @@
+{
+  "name": "natvs",
+  "displayName": "natvs",
+  "description": "vscode natlang support",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "nat",
+      "aliases": ["nat"],
+      "extensions": [".nat"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "nat",
+      "scopeName": "source.nat",
+      "path": "./syntaxes/nat.tmLanguage.json"
+    }]
+  },
+  "scripts": {
+    "dev": "rm -r ~/.vscode/extensions/natvs && cp -r $(pwd) ~/.vscode/extensions/natvs"
+  }
+}
