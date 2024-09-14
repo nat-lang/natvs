@@ -2,15 +2,18 @@
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "nat",
 	"scopeName": "source.nat",
-	"patterns": [
-		{ "include": "#comments" },
-		{ "include": "#keywords" },
-		{ "include": "#operators" },
-		{ "include": "#strings" },
-		{ "include": "#constants-and-special-vars" }
-	],
+	"patterns": [ { "include": "#expression" } ],
 	"repository": {
-		"keywords": {
+		"expression": {
+			"patterns": [
+				{ "include": "#comment" },
+				{ "include": "#keyword" },
+				{ "include": "#operator" },
+				{ "include": "#string" },
+				{ "include": "#constant-and-special-var" }
+			]
+		},
+		"keyword": {
 			"patterns": [
 				{
 					"name": "keyword.control.nat",
@@ -18,15 +21,19 @@
 				},
 				{
 					"name": "keyword.declaration.nat",
-					"match": "(?<!\\w)(let|const|class|extends)(?!\\w)"
+					"match": "(?<!\\w)(let|const|dom|class|extends)(?!\\w)"
+				},
+				{
+					"name": "keyword.other.nat",
+					"match": "(?<!\\w)(check)(?!\\w)"
 				}
 			]
 		},
-		"operators": {
+		"operator": {
 			"patterns": [
 				{
 					"name": "keyword.operator.relational.nat",
-					"match": "(==|!=|<=?|>=?)"
+					"match": "(==|!=|<=|>=)"
 				},
 				{
 					"name": "keyword.operator.spread.nat",
@@ -46,7 +53,16 @@
 				}
 			]
 		},
-		"strings": {
+		"interpolation-element": {
+			"name": "meta.template.expression.nat",
+			"begin": "\\{",
+			"beginCaptures": { "0": { "name": "punctuation.definition.interpolation.begin.nat" } },
+			"end": "\\}",
+			"endCaptures": { "0": { "name": "punctuation.definition.interpolation.end.nat" } },
+			"patterns": [ { "include": "#expression" } ],
+			"contentName": "meta.embedded.line.nat"
+		},
+		"string": {
 			"name": "string.quoted.double.nat",
 			"begin": "\"",
 			"end": "\"",
@@ -54,10 +70,11 @@
 				{
 					"name": "constant.character.escape.nat",
 					"match": "\\\\."
-				}
+				},
+				{ "include": "#interpolation-element" }
 			]
 		},
-		"constants-and-special-vars": {
+		"constant-and-special-var": {
 			"patterns": [
 				{
 					"name": "constant.language.nat",
@@ -73,7 +90,7 @@
 				}
 			]
 		},
-		"comments": {
+		"comment": {
 			"patterns": [
 				{
 					"name": "comment.line.double-slash.nat",
