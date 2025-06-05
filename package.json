@@ -1,13 +1,18 @@
 {
-  "name": "natvs",
+  "name": "@nat-lang/natvs",
+  "author": "alexander shilen",
   "displayName": "natvs",
   "description": "vscode natlang support",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.85.0"
   },
   "categories": [
     "Programming Languages"
+  ],
+  "files": [
+    "language-configuration",
+    "syntaxes"
   ],
   "contributes": {
     "languages": [
@@ -31,6 +36,7 @@
     ]
   },
   "scripts": {
-    "dev": "rm -r ~/.vscode/extensions/natvs && cp -r $(pwd) ~/.vscode/extensions/natvs"
+    "dev": "rm -r ~/.vscode/extensions/natvs && cp -r $(pwd) ~/.vscode/extensions/natvs",
+    "release": "npm publish --access public"
   }
 }
