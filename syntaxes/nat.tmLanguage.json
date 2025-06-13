@@ -27,7 +27,7 @@
 			"patterns": [
 				{
 					"name": "keyword.control.nat",
-					"match": "(?<!\\w)(as|else|for|if|in|return|while|print|throw|import)(?!\\w)"
+					"match": "(?<!\\w)(as|else|for|if|in|return|while|print|throw|use|from)(?!\\w)"
 				},
 				{
 					"name": "keyword.declaration.nat",
